@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package tas_sp2018;
-
+//
 /**
  *
  * @author Andrew
@@ -13,10 +13,9 @@ public class Badge {
            private String description;
 	   private String id;
 	
-	   public Badge(){
-		description = "";
-		id = "";
-	}
+	   public Badge(){}
+           
+           
 	   public Badge(String description, String id){
 		this.description = description;
 		this.id = id;

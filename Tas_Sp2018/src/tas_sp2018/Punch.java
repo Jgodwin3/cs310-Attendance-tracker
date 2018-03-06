@@ -1,10 +1,12 @@
-package Tas_Sp2018;
+package tas_sp2018;
 
 import java.util.*;
 import java.text.SimpleDateFormat;
 
 public class Punch {
 
+    public Punch(){}
+    
     private int shiftId;
     private String punchId;
     private String badgeId;
@@ -14,15 +16,16 @@ public class Punch {
     private GregorianCalendar adjusted;
     private String sdf;
     private int eventtypeid;
+    private int punchTypeId;
 
-    public Punch(int terminalId, String badgeId, int shiftId, long originalts, long adjustedts, int eventtypeid) {
+    public Punch(int terminalId, String badgeId, int shiftId, long originalts, int eventtypeid) {
 
         original = new GregorianCalendar();
         adjusted = new GregorianCalendar();
         originalts = (originalts * 1000);
-        adjustedts = (originalts * 1000);
+        //adjustedts = (originalts * 1000);
         original.setTimeInMillis(originalts);
-        adjusted.setTimeInMillis(adjustedts);
+        //adjusted.setTimeInMillis(adjustedts);
         this.terminalId = terminalId;
         this.badgeId = badgeId;
         this.shiftId = shiftId;
@@ -105,6 +108,6 @@ public class Punch {
             Status = " TIMED OUT: ";
         }
 
-        return "#" + terminalId + badgeId + Status + sdf;
+        return "#" + badgeId + Status + sdf;
     }
 }
