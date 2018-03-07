@@ -66,26 +66,31 @@ public class TASDatabase {
     public Punch getPunch(int punchid){
        String idString =  Integer.toString(punchid);
        
+       
        //Query for Punch info
        try{
            //Query for Punch info
-            ResultSet rs = stmt.executeQuery("SELECT * FROM event WHERE id =" + idString );
+            ResultSet rs = stmt.executeQuery("SELECT * FROM event WHERE id="+idString );
             if (rs != null){
+                rs.next();
                 String id = rs.getString("id");
                 String termID= rs.getString("terminalid");
                 String badgeid = rs.getString("badgeid");
                 String OGTS = rs.getString("originaltimestamp");
                 String ETID= rs.getString("eventtypeid");
                 String evData= rs.getString("eventdata");
-                String adjTS = rs.getString("adjustedtimestamp");
+                //String adjTS = rs.getString("adjustedtimestamp");
                 
                 //Converts query data into parameters for objects
-                Badge punchBadge = getBadge(badgeid);
+                //Badge punchBadge = getBadge(badgeid);
                 int termIDInt = Integer.parseInt(termID);
                 int punchtypeID = Integer.parseInt(ETID);
+                //long ogts = Long.parseLong(OGTS);
+                
                 
                 //Creates and populates the Punch object
-                finalPunch = Punch(punchBadge, termIDInt, punchtypeID);
+                finalPunch = new Punch(badgeid, termIDInt, punchtypeID);
+                
                 
             }
             
@@ -97,18 +102,22 @@ public class TASDatabase {
     
     public Badge getBadge(String id){
         
+        
         //Query for the badge info
         try{
-            ResultSet rs = stmt.executeQuery("SELECT * FROM badge WHERE id =" + id);
+            
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM badge WHERE id=" + id);
             if (rs != null){
+               rs.next();
                String badge = rs.getString("id");
                String desc = rs.getString("description");
                
                //Converts query data into parameters for objects
-               int id2 = Integer.parseInt(badge);
+               //int id2 = Integer.parseInt(badge);
                
                //Creates and populates the Badge object
-               finalBadge = Badge(id2, desc);
+               finalBadge = new Badge(desc, badge);
                
             }
         }
@@ -122,8 +131,9 @@ public class TASDatabase {
         
         //Query for shift ruleset info
         try {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM  shift WHERE id =" + shiftidString);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM shift WHERE id=" + shiftidString);
             if (rs != null){
+                rs.next();
                 String id = rs.getString("id");
                 String desc = rs.getString("description");
                 String start = rs.getString("start");
@@ -139,7 +149,7 @@ public class TASDatabase {
                 
                 
                 //Creates and populates the Shift object
-                finalShift = Shift(id, start, stop, lunchStart, lunchStop);
+                finalShift = new Shift(id, start, stop, lunchStart, lunchStop);
                 
             }
         }

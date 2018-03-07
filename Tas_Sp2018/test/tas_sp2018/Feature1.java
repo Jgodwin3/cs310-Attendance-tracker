@@ -1,5 +1,8 @@
+package tas_sp2018;
+
 import org.junit.*;
 import static org.junit.Assert.*;
+
 
 public class Feature1 {
 

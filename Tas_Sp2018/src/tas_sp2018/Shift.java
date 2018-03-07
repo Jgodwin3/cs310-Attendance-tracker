@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 
 
 public class Shift {
-        private int id = 0;
+        private String id = null;
 	private String description = "";
 	private String start;
         private String stop;
@@ -43,14 +43,14 @@ public class Shift {
 	}
         */
         public Shift(String id, String start, String stop, String lunchstart, String lunchstop){
-            this.id = Integer.parseInt(id);
+            this.id = id;
             this.start = start;
             this.stop = stop;
             this.lunchstart = lunchstart;
             this.lunchstop = lunchstop;
         }
         
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -100,7 +100,7 @@ public class Shift {
     }
 
     
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -151,6 +151,6 @@ public class Shift {
 
     @Override
     public String toString(){
-        return "Shift" + id + ":" + start + " - " + stop + " (temp minutes); Lunch: " + lunchstart + " - " + lunchstop + "(temp minutes)";
+        return "Shift " + id + ": " + start + " - " + stop + " (temp minutes); Lunch: " + lunchstart + " - " + lunchstop + "(temp minutes)";
     }
 }
